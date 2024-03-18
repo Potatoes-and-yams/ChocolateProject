@@ -16,25 +16,49 @@ async function addStudent() {
     const newAge = document.getElementById("newAge").value;
     const newGender = document.getElementById("newGender").value;
     const newGrade = document.getElementById("newGrade").value;
+
     if (!newName || !newAge || !newGender || !newGrade) {
         alert("请填写完整的学生信息");
         return;
     }
-    const response = await fetch("students.json");
-    const data = await response.json();
+
     const newStudent = {name: newName, age: newAge, gender: newGender, grade: newGrade};
-    data.push(newStudent);
-    const updatedContent = JSON.stringify(data, null, 2);
-    const updateResponse = await fetch("students.json", {
-        method: "PUT",
-        body: updatedContent
-    });
-    if (updateResponse.ok) {
-        alert("学生信息添加成功");
-    } else {
-        alert("学生信息添加失败");
+
+    try {
+        // 获取文件内容
+        const fileResponse = await fetch("https://api.github.com/repos/Potatoes-and-yams/ChocolateProject/contents/students.json");
+        const fileData = await fileResponse.json();
+        const fileContent = atob(fileData.content);
+
+        // 更新文件内容
+        const updatedContent = [...JSON.parse(fileContent), newStudent];
+        const updatedContentEncoded = btoa(JSON.stringify(updatedContent));
+
+        // 提交修改
+        const updateResponse = await fetch("https://api.github.com/repos/Potatoes-and-yams/ChocolateProject/contents/students.json", {
+            method: "PUT",
+            headers: {
+                "Authorization": "token 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",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                message: "Add new student",
+                content: updatedContentEncoded,
+                sha: fileData.sha
+            })
+        });
+
+        if (updateResponse.ok) {
+            alert("学生信息添加成功");
+        } else {
+            alert("学生信息添加失败，请检查网络连接或稍后重试");
+        }
+    } catch (error) {
+        console.error("添加学生信息失败:", error);
+        alert("添加学生信息失败，请查看控制台获取更多信息");
     }
 }
+
 
 function redirectToOtherPage() {
     window.location.href = "otherPage.html";
