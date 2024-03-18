@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生信息管理系统</title>
+</head>
+<body>
+    <h1>学生信息管理系统</h1>
+
+    <div>
+        <h2>查询学生信息</h2>
+        <label for="name">请输入学生姓名：</label>
+        <input type="text" id="name">
+        <button onclick="searchStudent()">查询</button>
+        <div id="result"></div>
+    </div>
+
+    <div>
+        <h2>添加学生信息</h2>
+        <label for="newName">姓名：</label>
+        <input type="text" id="newName"><br>
+        <label for="newAge">年龄：</label>
+        <input type="text" id="newAge"><br>
+        <label for="newGender">性别：</label>
+        <input type="text" id="newGender"><br>
+        <label for="newGrade">年级：</label>
+        <input type="text" id="newGrade"><br>
+        <button onclick="addStudent()">添加</button>
+    </div>
+
+    <button onclick="redirectToOtherPage()">查看其他页面</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
