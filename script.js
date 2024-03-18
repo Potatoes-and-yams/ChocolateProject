@@ -25,20 +25,24 @@ async function addStudent() {
     const newStudent = {name: newName, age: newAge, gender: newGender, grade: newGrade};
 
     try {
-        // 获取文件内容
+        // 获取原文件内容
         const fileResponse = await fetch("https://api.github.com/repos/Potatoes-and-yams/ChocolateProject/contents/students.json");
         const fileData = await fileResponse.json();
         const fileContent = atob(fileData.content);
 
+        // 将新学生信息添加到原文件内容中
+        const parsedContent = JSON.parse(fileContent);
+        parsedContent.push(newStudent);
+
         // 更新文件内容
-        const updatedContent = [...JSON.parse(fileContent), newStudent];
-        const updatedContentEncoded = btoa(JSON.stringify(updatedContent));
+        const updatedContent = JSON.stringify(parsedContent);
+        const updatedContentEncoded = btoa(updatedContent);
 
         // 提交修改
         const updateResponse = await fetch("https://api.github.com/repos/Potatoes-and-yams/ChocolateProject/contents/students.json", {
             method: "PUT",
             headers: {
-                "Authorization": "token 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",
+                "Authorization": "Bearer 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",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
@@ -58,6 +62,7 @@ async function addStudent() {
         alert("添加学生信息失败，请查看控制台获取更多信息");
     }
 }
+
 
 
 function redirectToOtherPage() {
