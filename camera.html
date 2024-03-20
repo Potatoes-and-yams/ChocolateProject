@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Camera Capture</title>
+</head>
+<body>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="capture">Capture</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <img id="photo" src="" alt="Captured Photo">
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureButton = document.getElementById('capture');
+        const photo = document.getElementById('photo');
+
+        // 获取摄像头流
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error('Error accessing the camera: ', err);
+            });
+
+        // 拍照
+        captureButton.addEventListener('click', () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+            
+            // 将拍摄的照片转换为 base64 格式
+            const imgData = canvas.toDataURL('image/png');
+            
+            // 将照片显示在网页上
+            photo.src = imgData;
+        });
+    </script>
+</body>
+</html>
