@@ -11,8 +11,8 @@
     <!-- 页面标题 -->
     <title>基于JavaScript,数据库,Qt,wifi单片机综合设计。</title>
     <!-- 引入演示页面样式 -->
-    <link rel="stylesheet" href="/static/css/demo.css">
-    <link rel="stylesheet" href="/static/css/mystyle.css">
+    <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="./css/mystyle.css">
 </head>
 
 <body>
@@ -32,11 +32,11 @@
                             <!-- 第二级导航 -->
                             <ul>
                                 <!-- 输出数字 -->
-                                <li><a href="/static/page/outputnum.html">输出数字</a></li>
+                                <li><a href="./page/outputnum.html">输出数字</a></li>
                                 <!-- 随机抽取 -->
-                                <li><a href="/static/page/randomdraw.html">随机抽取</a></li>
+                                <li><a href="./page/randomdraw.html">随机抽取</a></li>
                                 <!-- 倒计时 -->
-                                <li><a href="/static/page/countdown.html">倒计时</a></li>
+                                <li><a href="./page/countdown.html">倒计时</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -48,7 +48,7 @@
                             <!-- 第三级导航 -->
                             <ul>
                                 <!-- 显示屏显示 -->
-                                <li><a href="/static/page/display.html">显示屏显示</a></li>                               
+                                <li><a href="./page/display.html">显示屏显示</a></li>                               
                             </ul>
                         </li>
                         <!-- 小风扇控制器 -->
@@ -57,9 +57,9 @@
                             <!-- 杂志子类 -->
                             <ul>
                                 <!-- 开关 -->
-                                <li><a href="/static/page/switch.html">开关</a></li>
+                                <li><a href="./page/switch.html">开关</a></li>
                                 <!-- 倒计时关闭 -->
-                                <li><a href="/static/page/countdownswitch.html">倒计时关闭</a></li>
+                                <li><a href="./page/countdownswitch.html">倒计时关闭</a></li>
                             </ul>
                         </li>
                         <!-- 灯泡控制器 -->
@@ -68,9 +68,9 @@
                             <!-- 杂志子类 -->
                             <ul>
                                 <!-- 开关 -->
-                                <li><a href="/static/page/lampswitch.html">开关</a></li>
+                                <li><a href="./page/lampswitch.html">开关</a></li>
                                 <!-- 倒计时关闭 -->
-                                <li><a href="/static/page/lampcountdown.html">倒计时关闭</a></li>
+                                <li><a href="./page/lampcountdown.html">倒计时关闭</a></li>
                             </ul>
                         </li>
                         <!-- 传感器数据记录 -->
@@ -79,13 +79,13 @@
                             <!-- 商店子类 -->
                             <ul>
                                 <!-- 数据记录 -->
-                                <li><a href="/static/page/record.html">数据记录</a></li>
+                                <li><a href="./page/record.html">数据记录</a></li>
                                 <!-- 折线图 -->
-                                <li><a href="/static/page/linechart.html">折线图</a></li>
+                                <li><a href="./page/linechart.html">折线图</a></li>
                             </ul>
                         </li>
                         <!-- 聋哑儿童数字启蒙教育 -->
-                        <li class="credits"><a href="/static/page/deafeducation.html">聋哑儿童数字启蒙教育</a></li>
+                        <li class="credits"><a href="./page/deafeducation.html">聋哑儿童数字启蒙教育</a></li>
                         <li class="credits"><a href="index.html">首页</a></li>
                     </ul>
                 </nav>
@@ -124,9 +124,9 @@
         
     </div>
     <!-- 引入jQuery -->
-    <script src="/static/js/jquery-1.10.2.js"></script>
+    <script src="./js/jquery-1.10.2.js"></script>
     <!-- 引入侧边导航插件 -->
-    <script type="text/javascript" src="/static/js/hc-mobile-nav.js"></script>
+    <script type="text/javascript" src="./js/hc-mobile-nav.js"></script>
     <script>
         (function($) {
             // 获取导航和导航开关按钮
@@ -155,7 +155,7 @@
                 $toggle.off('click');
 
                 // 创建新的导航副本
-                $clone = $nav.clone();
+                clone=clone = nav.clone();
 
                 // 合并配置
                 $.extend(data, conf)
