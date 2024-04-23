@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <!-- 设置页面编码 -->
+    <meta charset="UTF-8">
+    <!-- 设置浏览器兼容性 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 设置移动设备视口 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 页面标题 -->
+    <title>基于JavaScript,数据库,Qt,wifi单片机综合设计。</title>
+    <!-- 引入演示页面样式 -->
+    <link rel="stylesheet" href="/static/css/demo.css">
+    <link rel="stylesheet" href="/static/css/mystyle.css">
+</head>
+
+<body>
+    <!-- 页面主体 -->
+    <div id="container">
+        <!-- 头部 -->
+        <header>
+            <!-- 头部包裹容器 -->
+            <div class="wrapper cf">
+                <!-- 主导航 -->
+                <nav id="main-nav">
+                    <!-- 第一级导航 -->
+                    <ul class="first-nav">
+                        <!-- 数码管控制器 -->
+                        <li class="cryptocurrency">
+                            <a href="#" target="_blank">数码管控制器</a>
+                            <!-- 第二级导航 -->
+                            <ul>
+                                <!-- 输出数字 -->
+                                <li><a href="/static/page/outputnum.html">输出数字</a></li>
+                                <!-- 随机抽取 -->
+                                <li><a href="/static/page/randomdraw.html">随机抽取</a></li>
+                                <!-- 倒计时 -->
+                                <li><a href="/static/page/countdown.html">倒计时</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- 第二级导航 -->
+                    <ul class="second-nav">
+                        <!-- OLED控制 -->
+                        <li class="devices">
+                            <a>OLED控制</a>
+                            <!-- 第三级导航 -->
+                            <ul>
+                                <!-- 显示屏显示 -->
+                                <li><a href="/static/page/display.html">显示屏显示</a></li>                               
+                            </ul>
+                        </li>
+                        <!-- 小风扇控制器 -->
+                        <li class="magazines">
+                            <a>小风扇控制器</a>
+                            <!-- 杂志子类 -->
+                            <ul>
+                                <!-- 开关 -->
+                                <li><a href="/static/page/switch.html">开关</a></li>
+                                <!-- 倒计时关闭 -->
+                                <li><a href="/static/page/countdownswitch.html">倒计时关闭</a></li>
+                            </ul>
+                        </li>
+                        <!-- 灯泡控制器 -->
+                        <li class="magazines">
+                            <a>灯泡控制器</a>
+                            <!-- 杂志子类 -->
+                            <ul>
+                                <!-- 开关 -->
+                                <li><a href="/static/page/lampswitch.html">开关</a></li>
+                                <!-- 倒计时关闭 -->
+                                <li><a href="/static/page/lampcountdown.html">倒计时关闭</a></li>
+                            </ul>
+                        </li>
+                        <!-- 传感器数据记录 -->
+                        <li class="store">
+                            <a>传感器数据记录</a>
+                            <!-- 商店子类 -->
+                            <ul>
+                                <!-- 数据记录 -->
+                                <li><a href="/static/page/record.html">数据记录</a></li>
+                                <!-- 折线图 -->
+                                <li><a href="/static/page/linechart.html">折线图</a></li>
+                            </ul>
+                        </li>
+                        <!-- 聋哑儿童数字启蒙教育 -->
+                        <li class="credits"><a href="/static/page/deafeducation.html">聋哑儿童数字启蒙教育</a></li>
+                        <li class="credits"><a href="index.html">首页</a></li>
+                    </ul>
+                </nav>
+                <!-- 导航开关按钮 -->
+                <a class="toggle">
+                    <span></span>
+                    基础远程控制系统
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <!-- 内容包裹容器 -->
+            <div class="wrapper">
+                
+                <div class="content">
+                    
+                    <!-- 选边标题 -->
+                    <h4>选边</h4>
+                    <!-- 选边操作 -->
+                    <div class="actions">
+                        <div><a href="#" data-demo="{side:'left'}" class="button active">左边</a></div>
+                    </div>
+                    
+                    <!-- 关卡开放标题 -->
+                    <h4>关卡开放</h4>
+                    
+                    <!-- 关卡开放操作 -->
+                    <div class="actions">
+                        <div><a href="#" data-demo="{levelOpen:'overlap', levelSpacing:40}" class="button active">重叠级别</a></div>
+                       
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+    </div>
+    <!-- 引入jQuery -->
+    <script src="/static/js/jquery-1.10.2.js"></script>
+    <!-- 引入侧边导航插件 -->
+    <script type="text/javascript" src="/static/js/hc-mobile-nav.js"></script>
+    <script>
+        (function($) {
+            // 获取导航和导航开关按钮
+            var $nav = $('#main-nav');
+            var $toggle = $('.toggle');
+            // 默认配置
+            var defaultData = {
+                maxWidth: false,
+                customToggle: $toggle,
+                navTitle: '基于JavaScript，数据库，Qt，wifi，单片机综合设计。',
+                levelTitles: true
+            };
+
+            // 存储临时数据
+            var $clone = null;
+            var data = {};
+
+            // 初始化导航函数
+            const initNav = function(conf) {
+                if ($clone) {
+                    // 清除之前的实例
+                    $clone.remove();
+                }
+
+                // 移除旧的导航开关点击事件
+                $toggle.off('click');
+
+                // 创建新的导航副本
+                $clone = $nav.clone();
+
+                // 合并配置
+                $.extend(data, conf)
+
+                // 调用插件
+                $clone.hcMobileNav($.extend({}, defaultData, data));
+            }
+
+            // 初始化导航
+            initNav({});
+
+            // 绑定操作按钮点击事件
+            $('.actions').find('a').on('click', function(e) {
+                e.preventDefault();
+
+                var $this = $(this).addClass('active');
+                var $siblings = $this.parent().siblings().children('a').removeClass('active');
+
+                // 初始化导航
+                initNav(eval('(' + $this.data('demo') + ')'));
+            });
+
+            // 跳转函数
+            function goToPage(url) {
+                window.location.href = url;
+            }
+        })(jQuery);
+    </script>
+    <!-- 隐藏的链接 -->
+    <a href="javascript:;" style="display:none;"></a>
+</body>
+
+</html>
